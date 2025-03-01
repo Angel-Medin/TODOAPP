@@ -1,6 +1,6 @@
 import sys
 from PyQt5.QtWidgets import QApplication
-from _gui import ToDoApp
+from gui import ToDoApp
 from database import DatabaseManager
 
 if __name__ == "__main__":

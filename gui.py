@@ -1,5 +1,6 @@
 from PyQt5.QtWidgets import QWidget, QVBoxLayout, QTableWidget, QTableWidgetItem, QPushButton, QHBoxLayout, QLineEdit, QLabel, QMenu, QInputDialog, QHeaderView
 from PyQt5.QtCore import QPoint, Qt
+from style import apply_styles
 
 class ToDoApp(QWidget):
     def __init__(self, db_manager):
@@ -8,6 +9,7 @@ class ToDoApp(QWidget):
         self.setWindowTitle("To Do List")
         self.setGeometry(100, 100, 600, 400)
         self.init_ui()
+        apply_styles(self)
 
     def init_ui(self):
         # Layout principal
@@ -17,8 +19,16 @@ class ToDoApp(QWidget):
         self.table = QTableWidget()
         self.table.setColumnCount(5)
         self.table.setHorizontalHeaderLabels(["Tarea", "Descripción", "Estado", "Menú", "ID"])
+       
+       
         # Ajustar la columna del menú al contenido
-        self.table.horizontalHeader().setSectionResizeMode(3, QHeaderView.ResizeToContents)
+        header = self.table.horizontalHeader()
+        header.setSectionResizeMode(0, QHeaderView.Stretch)
+        header.setSectionResizeMode(1, QHeaderView.Stretch)
+        header.setSectionResizeMode(2, QHeaderView.ResizeToContents)
+        header.setSectionResizeMode(3, QHeaderView.ResizeToContents)
+        
+        
         self.layout.addWidget(self.table)
 
         # Sección para agregar nuevas tareas
